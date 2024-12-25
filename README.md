@@ -1,191 +1,121 @@
-# E-Learning Platform
+# Django E-Library Project
 
-This is an **E-Learning Platform** built with **Django 5** using the **MVT** (Model-View-Template) architectural pattern. The platform allows users (students and teachers) to interact with courses, feedback, and ratings, all backed by **PostgreSQL 16**. It includes full **CRUD (Create, Read, Update, Delete)** functionalities for managing courses, users, feedback, and ratings.
+## Overview
+This is a Django-based application for managing an online library system. It includes features for user management, book management, and feedback submission. The project is designed for production deployment using Docker, PostgreSQL, and Nginx.
+
+---
 
 ## Features
+- User authentication (registration, login, logout).
+- Book catalog management.
+- Feedback and reviews for books.
+- Production-ready setup with Docker Compose.
 
-- User authentication and management (register, login, logout).
-- Course management (Create, View, Update, Delete).
-- Feedback and Rating system for courses.
-- PostgreSQL 16 database for persistent storage.
-- CRUD functionality for all models.
-- Django Admin for backend management.
+---
 
-## Table of Contents
+## Prerequisites
+- **Python 3.12+**
+- **PostgreSQL 15+**
+- **Docker and Docker Compose**
+- **Git**
 
-1. [Technologies Used](#technologies-used)
-2. [Installation](#installation)
-3. [Project Structure](#project-structure)
-4. [Usage](#usage)
-5. [Models](#models)
-6. [License](#license)
-
-## Technologies Used
-
-- **Backend**: Django 5
-- **Database**: PostgreSQL 16
-- **Frontend**: HTML, CSS (with optional JavaScript)
-- **Authentication**: Django’s built-in authentication system
-- **Template Engine**: Django templates (MVT)
+---
 
 ## Installation
 
-Follow these steps to set up the project on your local machine.
-
-### Prerequisites
-
-- Python 3.12+ installed.
-- PostgreSQL 16 installed and running.
-- Git (to clone the repository).
-- Virtual Environment (recommended).
-
-### 1. Clone the repository
-
+### 1. Clone the Repository
 ```bash
-git clone https://github.com/your-username/elearning-project.git
-cd elearning-project
+git clone https://github.com/<your-username>/<repository-name>.git
+cd <repository-name>
 ```
 
-### 2. Set up a virtual environment
+### 2. Set Up Environment Variables
+Create a `.env` file in the project root with the following variables:
+```env
+# Django settings
+SECRET_KEY=your-secret-key
+DEBUG=False
+ALLOWED_HOSTS=127.0.0.1,localhost
 
+# Database settings
+POSTGRES_DB=e_library
+POSTGRES_USER=your-db-user
+POSTGRES_PASSWORD=your-db-password
+POSTGRES_HOST=db
+POSTGRES_PORT=5432
+```
+
+### 3. Build and Run with Docker Compose
 ```bash
-python -m venv venv
+docker-compose up --build -d
 ```
 
-### 3. Activate the virtual environment
+---
 
-#### On macOS/Linux:
+## Accessing the Application
+- The application will be accessible at [http://localhost:80](http://localhost:80).
+- Django admin panel: [http://localhost:80/admin](http://localhost:80/admin)
+  - Create a superuser with:
+    ```bash
+    docker-compose exec web python manage.py createsuperuser
+    ```
 
-```bash
-source venv/bin/activate
-```
+---
 
-#### On Windows:
+## Folder Structure
+- **`/templates/`**: Contains HTML templates for the application.
+- **`/static/`**: Contains static files (CSS, JS, images).
+- **`/nginx.conf`**: Nginx configuration for reverse proxy.
+- **`Dockerfile`**: Multi-stage Dockerfile for production.
+- **`docker-compose.yml`**: Docker Compose configuration.
 
-```bash
-venv\Scripts\activate
-```
+---
 
-### 4. Install dependencies
+## Running Locally (Without Docker)
+1. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+2. Apply migrations:
+   ```bash
+   python manage.py migrate
+   ```
+3. Run the development server:
+   ```bash
+   python manage.py runserver
+   ```
 
-```bash
-pip install -r requirements.txt
-```
+---
 
-### 5. Set up the PostgreSQL Database
+## Troubleshooting
+- **Database Connection Issues**: Ensure the PostgreSQL service is running and the `.env` file is correctly configured.
+- **Static Files Not Loading**: Run `python manage.py collectstatic` to gather static files.
+- **Permission Errors**: Check Docker volume permissions.
 
-1. Create a new PostgreSQL database and user:
+---
 
-```bash
-psql -U postgres
-CREATE DATABASE elearning_db;
-CREATE USER elearning_user WITH PASSWORD 'yourpassword';
-ALTER ROLE elearning_user SET client_encoding TO 'utf8';
-ALTER ROLE elearning_user SET default_transaction_isolation TO 'read committed';
-ALTER ROLE elearning_user SET timezone TO 'UTC';
-GRANT ALL PRIVILEGES ON DATABASE elearning_db TO elearning_user;
-```
+## Contribution
+1. Fork the repository.
+2. Create a new branch:
+   ```bash
+   git checkout -b feature-name
+   ```
+3. Commit changes and push:
+   ```bash
+   git add .
+   git commit -m "Add feature"
+   git push origin feature-name
+   ```
+4. Open a pull request.
 
-2. Update the `DATABASES` setting in `settings.py`:
+---
 
-```python
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'elearning_db',
-        'USER': 'elearning_user',
-        'PASSWORD': 'yourpassword',
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
-}
-```
+## License
+This project is licensed under the [MIT License](LICENSE).
 
-### 6. Apply migrations
+---
 
-Run the following command to set up the database schema:
+## Author
+- **Bin Bawany**
+- **Email**: b2bawany@gmail.com
 
-```bash
-python manage.py migrate
-```
-
-### 7. Create a superuser (admin) to access the Django admin panel:
-
-```bash
-python manage.py createsuperuser
-```
-
-Follow the prompts to create the admin account.
-
-### 8. Run the development server
-
-Start the Django development server:
-
-```bash
-python manage.py runserver
-```
-
-Your application should now be running at `http://127.0.0.1:8000/`.
-
-e_library/
-|-- e_library/
-|   |-- __init__.py
-|   |-- asgi.py
-|   |-- settings.py
-|   |-- urls.py
-|   |-- wsgi.py
-|
-|-- users/
-|   |-- migrations/
-|   |   |-- __init__.py
-|   |-- templates/
-|   |   |-- users/
-|   |       |-- login.html
-|   |       |-- base.html
-|   |-- __init__.py
-|   |-- admin.py
-|   |-- apps.py
-|   |-- forms.py
-|   |-- models.py
-|   |-- tests.py
-|   |-- urls.py
-|   |-- views.py
-|
-|-- books/
-|   |-- migrations/
-|   |   |-- __init__.py
-|   |-- templates/
-|   |   |-- books/
-|   |       |-- book_list.html
-|   |       |-- book_detail.html
-|   |       |-- book_form.html
-|   |       |-- book_confirm_delete.html
-|   |-- __init__.py
-|   |-- admin.py
-|   |-- apps.py
-|   |-- forms.py
-|   |-- models.py
-|   |-- tests.py
-|   |-- urls.py
-|   |-- views.py
-|
-|-- feedback/
-|   |-- migrations/
-|   |   |-- __init__.py
-|   |-- templates/
-|   |   |-- feedback/
-|   |       |-- feedback_form.html
-|   |-- __init__.py
-|   |-- admin.py
-|   |-- apps.py
-|   |-- forms.py
-|   |-- models.py
-|   |-- tests.py
-|   |-- urls.py
-|   |-- views.py
-|
-|-- manage.py
-|-- requirements.txt
-
-
-Thanks a lot
