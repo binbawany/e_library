@@ -1,0 +1,42 @@
+# Ignore Python bytecode files
+*.pyc
+*.pyo
+__pycache__
+
+# Ignore Django migrations (already tracked by Django)
+*/migrations/
+
+# Ignore environment variable files that may contain sensitive information
+*.env
+
+# Ignore local database files (e.g., SQLite, but you may use PostgreSQL)
+*.sqlite3
+
+# Ignore media and static files that are often large and can be generated
+/media/
+/static/
+
+# Ignore Django secret key (or other config files) 
+*.log
+
+# Ignore IDE or editor-specific files (e.g., VSCode, PyCharm)
+.vscode/
+.idea/
+
+# Ignore Python virtual environments
+venv/
+env/
+
+# Ignore any other temporary or system files
+.DS_Store         # macOS specific
+Thumbs.db         # Windows specific
+
+# Ignore test coverage or report files
+.coverage
+*.coveragerc
+nosetests.xml
+test*.xml
+
+# Ignore deployment config files
+*.yml
+*.yaml

@@ -1,0 +1,14 @@
+{% extends 'users/base.html' %}
+{% block content %}
+<h1>{{ object.title }}</h1>
+<p>Author: {{ object.author }}</p>
+<p>Genre: {{ object.genre }}</p>
+<p>Status: {{ "Available" if object.available else "Checked Out" }}</p>
+
+<a href="{{ object.id }}/update/">Edit</a>
+<form method="post" action="{{ object.id }}/delete/" style="display:inline;">
+    {% csrf_token %}
+    <button type="submit">Delete</button>
+</form>
+<a href="/books/">Back to list</a>
+{% endblock %}
