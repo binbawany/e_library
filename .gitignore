@@ -24,7 +24,7 @@ __pycache__
 .idea/
 
 # Ignore Python virtual environments
-venv/
+myenv/
 env/
 
 # Ignore any other temporary or system files
@@ -37,6 +37,3 @@ Thumbs.db         # Windows specific
 nosetests.xml
 test*.xml
 
-# Ignore deployment config files
-*.yml
-*.yaml
