@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Library Management System</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <img src="{% static 'images/logo.png' %}" alt="E-Library Logo" class="logo">
+            <h1>Welcome to the E-Library</h1>
+            <p>Your one-stop solution for managing books and feedback!</p>
+        </div>
+    </header>
+
+    <main>
+        <div class="navigation">
+            <a href="/books/" class="btn">Manage Books</a>
+            <a href="/users/login/" class="btn">User Login</a>
+            <a href="/users/register/" class="btn">User Register</a>
+            <a href="/feedback/" class="btn">Submit Feedback</a>
+            <a href="/admin/" class="btn admin">Admin Panel</a>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 E-Library. All rights reserved.</p>
+    </footer>
+
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>
