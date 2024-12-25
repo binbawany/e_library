@@ -16,10 +16,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.shortcuts import render
+
+def index(request):
+    return render(request, 'index.html')
 
 urlpatterns = [
+    path('', index, name='index'),  # Default homepage
     path('admin/', admin.site.urls),
     path('users/', include('users.urls')),
     path('books/', include('books.urls')),
     path('feedback/', include('feedback.urls')),
 ]
+
+
+
