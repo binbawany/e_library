@@ -25,7 +25,7 @@ This is a Django-based application for managing an online library system. It inc
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/<your-username>/<repository-name>.git
+git clone https://github.com/binbawany/e_library.git
 cd <repository-name>
 ```
 
