@@ -1,7 +1,3 @@
-Here’s a sample **README.md** file for your e-learning project built with **Django 5**, **PostgreSQL 16**, and CRUD functionalities. This will provide an overview of the project and guide users on setting it up and using it.
-
----
-
 # E-Learning Platform
 
 This is an **E-Learning Platform** built with **Django 5** using the **MVT** (Model-View-Template) architectural pattern. The platform allows users (students and teachers) to interact with courses, feedback, and ratings, all backed by **PostgreSQL 16**. It includes full **CRUD (Create, Read, Update, Delete)** functionalities for managing courses, users, feedback, and ratings.
